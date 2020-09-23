@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace PrikazoveVykreslovani
 {
+
+    //AS
     public partial class GroupManager : Form
     {
         List<Shape> shapes = new List<Shape>();
