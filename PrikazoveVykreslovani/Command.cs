@@ -20,6 +20,7 @@ namespace PrikazoveVykreslovani
         public Shape Shape => shape;
 
         //Git Medřický
+        // můj nový řádek
 
         public Command() {
             InitializeComponent();
