@@ -59,7 +59,7 @@ namespace PrikazoveVykreslovani
         public abstract void Visualize(Graphics g);
 
         public override string ToString() {
-            return GetType().ToString() + start + " " + end + " " + color;
+            return GetType().Name + start + " " + end;
         }
     }
 

@@ -16,19 +16,27 @@ namespace PrikazoveVykreslovani
         public event Action<Command> PosunNiz;
         public event Action<Command> Smazat;
 
+        public event Action<Command> DragStart;
+        public event Action<Command> DragEnded;
+        public event Action<Command> MovedDragged;
+
         private Shape shape;
         public Shape Shape => shape;
 
+        private Font yoinkedFont = new System.Drawing.Font("Microsoft Sans Serif", 12.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (238)));
+        private string shapeText ="";
         //Git Medřický
         // můj nový řádek
 
         public Command() {
             InitializeComponent();
+            ControlExtension.Draggable(this, true);
         }
 
         public void SetShape(Shape s) {
             shape = s;
-            label1.Text = s.ToString();
+            pictureBox1.BackColor = s.color;
+            shapeText = s.ToString();
         } 
 
         private void PosunoutVýšToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -58,6 +66,23 @@ namespace PrikazoveVykreslovani
 
         private void ContextMenuStrip1_Opening(object sender, CancelEventArgs e) {
 
+        }
+
+        private void Command_Paint(object sender, PaintEventArgs e) {
+            Graphics g = e.Graphics;
+            g.DrawString(shapeText, yoinkedFont, Brushes.Black, new Point(50, 8));
+        }
+
+        private void Command_MouseDown(object sender, MouseEventArgs e) {
+            DragStart?.Invoke(this);
+        }
+
+        private void Command_MouseUp(object sender, MouseEventArgs e) {
+            DragEnded?.Invoke(this);
+        }
+
+        private void Command_MouseMove(object sender, MouseEventArgs e) {
+            MovedDragged?.Invoke(this);
         }
     }
 }

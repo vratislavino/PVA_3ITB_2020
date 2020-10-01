@@ -15,6 +15,8 @@ namespace PrikazoveVykreslovani
     public partial class GroupManager : Form
     {
         List<Shape> shapes = new List<Shape>();
+        List<Command> commands = new List<Command>();
+        Command currentlyDraggedCommand;
 
         public GroupManager() {
             InitializeComponent();
@@ -39,16 +41,49 @@ namespace PrikazoveVykreslovani
         }
 
         private void UpdateCommands() {
-            flowLayoutPanel1.Controls.Clear();
-            foreach (var shp in shapes) {
+            panel2.Controls.Clear();
+            commands.Clear();
+            for (int i = 0; i < shapes.Count; i++) {
+                Shape shp = (Shape) shapes[i];
                 Command c = new Command();
                 c.SetShape(shp);
-                c.PosunNiz += OnPosunNiz;
-                c.PosunVys += OnPosunVys;
+                //c.PosunNiz += OnPosunNiz;
+                //c.PosunVys += OnPosunVys;
                 c.Smazat += OnSmazat;
-                flowLayoutPanel1.Controls.Add(c);
+                c.Location = new Point(0, i * c.Height);
+                c.DragStart += OnDragStart;
+                c.DragEnded += OnDragEnded;
+                c.MovedDragged += OnMovedDragged;
+                commands.Add(c);
+                panel2.Controls.Add(c);
             }
-            flowLayoutPanel1.Refresh();
+            panel2.Refresh();
+        }
+
+        private void OnMovedDragged(Command obj) {
+            if(currentlyDraggedCommand != null)
+                RepositionCommands();
+        }
+
+        private void RepositionCommands() {
+            commands = commands.OrderBy(x => x.Location.Y).ToList();
+            for(int i = 0; i < commands.Count; i++) {
+                if(commands[i] != currentlyDraggedCommand)
+                    commands[i].Location = new Point(0,i*commands[i].Location.Y);
+            }
+            commands.ForEach(x => Console.WriteLine(x.Location));
+            
+        }
+
+        private void OnDragEnded(Command obj) {
+            shapes = commands.Select(x => x.Shape).ToList();
+            panel1.Refresh();
+            currentlyDraggedCommand = null;
+            RepositionCommands();
+        }
+
+        private void OnDragStart(Command obj) {
+            currentlyDraggedCommand = obj;
         }
 
         private void OnPosunNiz(Command c) {
