@@ -18,6 +18,9 @@ namespace PrikazoveVykreslovani
         List<Command> commands = new List<Command>();
         Command currentlyDraggedCommand;
 
+        public List<Shape> Shapes => shapes;
+        public string GroupName => textBox1.Text;
+
         public GroupManager() {
             InitializeComponent();
             UpdateCommands();
@@ -69,10 +72,9 @@ namespace PrikazoveVykreslovani
             commands = commands.OrderBy(x => x.Location.Y).ToList();
             for(int i = 0; i < commands.Count; i++) {
                 if(commands[i] != currentlyDraggedCommand)
-                    commands[i].Location = new Point(0,i*commands[i].Location.Y);
+                    commands[i].Location = new Point(0,i*commands[i].Height);
             }
-            commands.ForEach(x => Console.WriteLine(x.Location));
-            
+            //commands.ForEach(x => Console.WriteLine(x.Location));
         }
 
         private void OnDragEnded(Command obj) {
@@ -117,6 +119,29 @@ namespace PrikazoveVykreslovani
 
         private void Panel1_Paint(object sender, PaintEventArgs e) {
             shapes.ForEach(shp => shp.Draw(e.Graphics));
+        }
+
+        private void okButton_Click(object sender, EventArgs e) {
+            string name = textBox1.Text;
+            if(string.IsNullOrEmpty(name)) {
+                DialogResult res = MessageBox.Show("Chybí vám název skupiny! Chcete pokračovat? Skupina se neuloží!", "Upozornění!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(res == DialogResult.Yes) {
+                    if(shapes.Count == 0) {
+                        res = MessageBox.Show("Chybí vám obrazce! Chcete pokračovat? Skupina se neuloží!", "Upozornění!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if(res == DialogResult.Yes) {
+                            Close();
+                        }
+                    } else {
+                        Close();
+                    }
+                } else {
+                    Close();
+                }
+            } else {
+                Close();
+            }
+            
+
         }
     }
 }

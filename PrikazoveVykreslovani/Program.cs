@@ -15,7 +15,7 @@ namespace PrikazoveVykreslovani
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GroupManager());
+            Application.Run(new Form1());
         }
     }
 }

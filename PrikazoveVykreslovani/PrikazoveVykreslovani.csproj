@@ -67,11 +67,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs" />
     <Compile Include="GroupManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GroupManager.Designer.cs">
       <DependentUpon>GroupManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GroupView.Designer.cs">
+      <DependentUpon>GroupView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupManager.resx">
       <DependentUpon>GroupManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupView.resx">
+      <DependentUpon>GroupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
