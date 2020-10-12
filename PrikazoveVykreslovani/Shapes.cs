@@ -20,8 +20,7 @@ namespace PrikazoveVykreslovani
 
     public abstract class Shape
     {
-        protected Pen visualizePen = new Pen(Color.Black, 3) 
-        { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash};
+        protected Pen visualizePen = new Pen(Color.Black, 3) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash };
 
         public Point start;
         public Point end;
@@ -56,6 +55,10 @@ namespace PrikazoveVykreslovani
 
         public abstract void Draw(Graphics g);
 
+        public virtual void DrawInSize(Graphics g, Point pos, Size siz) {
+
+        }
+
         public abstract void Visualize(Graphics g);
 
         public override string ToString() {
@@ -74,6 +77,22 @@ namespace PrikazoveVykreslovani
                 g.DrawRectangle(new Pen(color, lineWidth),
                 start.X, start.Y,
                 end.X - start.X, end.Y - start.Y);
+            }
+        }
+
+        public override void DrawInSize(Graphics g, Point pos, Size siz) {
+
+            float ratioX = (float) siz.Width / 400;
+            float ratioY = (float) siz.Height / 400;
+
+            if (filled) {
+                g.FillRectangle(new SolidBrush(color),
+                    start.X + pos.X * ratioX, start.Y + pos.Y * ratioY,
+                    (end.X - start.X) * ratioX, (end.Y - start.Y) * ratioY);
+            } else {
+                g.DrawRectangle(new Pen(color, lineWidth),
+                start.X + pos.X * ratioX, start.Y + pos.Y * ratioY,
+                 (end.X - start.X) * ratioX, (end.Y - start.Y) * ratioY);
             }
         }
 
@@ -137,7 +156,7 @@ namespace PrikazoveVykreslovani
                 new Point((end.X + start.X)/2, start.Y)
             };
 
-            if(filled) {
+            if (filled) {
                 g.FillPolygon(new SolidBrush(color), points);
             } else {
                 g.DrawPolygon(new Pen(color, lineWidth), points);

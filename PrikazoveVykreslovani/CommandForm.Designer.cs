@@ -36,7 +36,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(9, 10);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 400);
             this.panel1.TabIndex = 0;
@@ -49,17 +50,19 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(429, 13);
+            this.comboBox1.Location = new System.Drawing.Point(413, 10);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(381, 59);
+            this.comboBox1.Size = new System.Drawing.Size(287, 47);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.TextChanged += new System.EventHandler(this.ComboBox1_TextChanged);
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(429, 79);
+            this.colorButton.Location = new System.Drawing.Point(413, 61);
+            this.colorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(381, 61);
+            this.colorButton.Size = new System.Drawing.Size(286, 50);
             this.colorButton.TabIndex = 2;
             this.colorButton.UseVisualStyleBackColor = true;
             this.colorButton.BackColorChanged += new System.EventHandler(this.ColorButton_BackColorChanged);
@@ -70,10 +73,11 @@
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox1.Location = new System.Drawing.Point(621, 158);
+            this.checkBox1.Location = new System.Drawing.Point(547, 128);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox1.Size = new System.Drawing.Size(189, 59);
+            this.checkBox1.Size = new System.Drawing.Size(154, 48);
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "Vyplnit";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -82,9 +86,10 @@
             // okButton
             // 
             this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.okButton.Location = new System.Drawing.Point(621, 326);
+            this.okButton.Location = new System.Drawing.Point(557, 331);
+            this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(188, 96);
+            this.okButton.Size = new System.Drawing.Size(141, 78);
             this.okButton.TabIndex = 4;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -92,14 +97,15 @@
             // 
             // CommandForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 434);
+            this.ClientSize = new System.Drawing.Size(709, 420);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.colorButton);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CommandForm";
             this.Text = "CommandForm";
             this.ResumeLayout(false);

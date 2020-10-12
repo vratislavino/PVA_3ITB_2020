@@ -37,10 +37,20 @@ namespace PrikazoveVykreslovani
                 command3.SetShape(group.shapes[2]);
             else
                 command3.Visible = false;
+
+            pictureBox1.Refresh();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) {
             GroupClicked?.Invoke(group);
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e) {
+            if(group != null) {
+                group.position = new Point(0,0);
+                group.size = new Size(pictureBox1.Width, pictureBox1.Height);
+                group.DrawGroup(e.Graphics);
+            }
         }
     }
 }

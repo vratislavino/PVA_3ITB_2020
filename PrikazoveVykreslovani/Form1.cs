@@ -15,6 +15,7 @@ namespace PrikazoveVykreslovani
         List<Group> groups = new List<Group>();
 
         List<Group> drawnGroups = new List<Group>();
+        Group selectedGroup = null;
 
         public Form1() {
             InitializeComponent();
@@ -52,16 +53,42 @@ namespace PrikazoveVykreslovani
                 flowLayoutPanel1.Controls.Add(gv);
             }
 
-            panel1.Refresh();
+            canvas1.Refresh();
         }
 
         private void GroupClicked(Group obj) {
-            drawnGroups.Add(obj);
-            panel1.Refresh();
+
+            Group g = new Group(obj);
+            drawnGroups.Add(g);
+            g.size = new Size(200, 400);
+            g.position = new Point(50, 50);
+            //g.position = new Point(canvas1.Width / 2 , canvas1.Height/2);
+            canvas1.Refresh();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e) {
+        private void canvas1_Paint(object sender, PaintEventArgs e) {
             drawnGroups.ForEach(x => x.DrawGroup(e.Graphics));
+        }
+
+        private void canvas1_MouseDown(object sender, MouseEventArgs e) {
+
+        }
+
+        private void canvas1_MouseUp(object sender, MouseEventArgs e) {
+
+        }
+
+        private void canvas1_MouseMove(object sender, MouseEventArgs e) {
+            foreach(Group g in drawnGroups) {
+                if (g.ContainsPoint(e.Location)) {
+                    selectedGroup = g;
+                    g.Selected = true;
+                    // problém s posunem při vykreslování shape
+                    break;
+                }
+            }
+
+            canvas1.Refresh();
         }
     }
 }
