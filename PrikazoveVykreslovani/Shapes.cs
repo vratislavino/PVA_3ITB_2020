@@ -18,7 +18,7 @@ namespace PrikazoveVykreslovani
         Arrow
     }
 
-    public abstract class Shape
+    public class Shape
     {
         protected Pen visualizePen = new Pen(Color.Black, 3) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash };
 
@@ -27,6 +27,8 @@ namespace PrikazoveVykreslovani
         public Color color;
         public int lineWidth = 4;
         public bool filled;
+
+        public string ClassName;
 
         public static Shape CreateShape(string s, Shape origin) {
             var shape = CreateShape(s);
@@ -40,8 +42,11 @@ namespace PrikazoveVykreslovani
 
         public static Shape CreateShape(string s) {
             s = CorrectShapeName(s);
-            return (Shape) Activator.CreateInstance(
+            
+            Shape shp = (Shape) Activator.CreateInstance(
                 Type.GetType("PrikazoveVykreslovani." + s));
+            shp.ClassName = s;
+            return shp;
         }
 
         private static string CorrectShapeName(string s) {
@@ -53,13 +58,13 @@ namespace PrikazoveVykreslovani
             }
         }
 
-        public abstract void Draw(Graphics g);
+        public virtual void Draw(Graphics g) { }
 
         public virtual void DrawInSize(Graphics g, Point pos, Size siz) {
 
         }
 
-        public abstract void Visualize(Graphics g);
+        public virtual void Visualize(Graphics g) { }
 
         public override string ToString() {
             return GetType().Name + start + " " + end;
@@ -69,15 +74,7 @@ namespace PrikazoveVykreslovani
     public class Rectangle : Shape
     {
         public override void Draw(Graphics g) {
-            if (filled) {
-                g.FillRectangle(new SolidBrush(color),
-                    start.X, start.Y,
-                    end.X - start.X, end.Y - start.Y);
-            } else {
-                g.DrawRectangle(new Pen(color, lineWidth),
-                start.X, start.Y,
-                end.X - start.X, end.Y - start.Y);
-            }
+            DrawInSize(g, new Point(), new Size(400, 400));
         }
 
         public override void DrawInSize(Graphics g, Point pos, Size siz) {
@@ -87,11 +84,11 @@ namespace PrikazoveVykreslovani
 
             if (filled) {
                 g.FillRectangle(new SolidBrush(color),
-                    start.X + pos.X * ratioX, start.Y + pos.Y * ratioY,
+                    pos.X + start.X * ratioX, pos.Y + start.Y * ratioY,
                     (end.X - start.X) * ratioX, (end.Y - start.Y) * ratioY);
             } else {
                 g.DrawRectangle(new Pen(color, lineWidth),
-                start.X + pos.X * ratioX, start.Y + pos.Y * ratioY,
+                pos.X + start.X * ratioX, pos.Y + start.Y * ratioY,
                  (end.X - start.X) * ratioX, (end.Y - start.Y) * ratioY);
             }
         }

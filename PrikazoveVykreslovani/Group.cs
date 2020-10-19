@@ -55,13 +55,13 @@ namespace PrikazoveVykreslovani
             g.DrawLine(arrowPen,
                 position.X + size.Width,
                 position.Y + size.Height,
-                position.X + size.Height + arrowSize,
+                position.X + size.Width + arrowSize,
                 position.Y + size.Height
                 );
             g.DrawLine(arrowPen,
                  position.X + size.Width,
                  position.Y + size.Height,
-                 position.X + size.Height,
+                 position.X + size.Width,
                  position.Y + size.Height + arrowSize
                  );
         }
