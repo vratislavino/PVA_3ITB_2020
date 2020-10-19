@@ -39,19 +39,21 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(818, 27);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1091, 33);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 800);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(653, 985);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.souborToolStripMenuItem,
             this.skupinaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1320, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1760, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -62,25 +64,25 @@
             this.načístToolStripMenuItem,
             this.uložitToolStripMenuItem});
             this.souborToolStripMenuItem.Name = "souborToolStripMenuItem";
-            this.souborToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.souborToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.souborToolStripMenuItem.Text = "Soubor";
             // 
             // novýToolStripMenuItem
             // 
             this.novýToolStripMenuItem.Name = "novýToolStripMenuItem";
-            this.novýToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.novýToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.novýToolStripMenuItem.Text = "Nový";
             // 
             // načístToolStripMenuItem
             // 
             this.načístToolStripMenuItem.Name = "načístToolStripMenuItem";
-            this.načístToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.načístToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.načístToolStripMenuItem.Text = "Načíst";
             // 
             // uložitToolStripMenuItem
             // 
             this.uložitToolStripMenuItem.Name = "uložitToolStripMenuItem";
-            this.uložitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.uložitToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.uložitToolStripMenuItem.Text = "Uložit";
             // 
             // skupinaToolStripMenuItem
@@ -88,38 +90,40 @@
             this.skupinaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.přidatToolStripMenuItem});
             this.skupinaToolStripMenuItem.Name = "skupinaToolStripMenuItem";
-            this.skupinaToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.skupinaToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.skupinaToolStripMenuItem.Text = "Skupina";
             // 
             // přidatToolStripMenuItem
             // 
             this.přidatToolStripMenuItem.Name = "přidatToolStripMenuItem";
-            this.přidatToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.přidatToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
             this.přidatToolStripMenuItem.Text = "Přidat";
             this.přidatToolStripMenuItem.Click += new System.EventHandler(this.přidatToolStripMenuItem_Click);
             // 
             // canvas1
             // 
             this.canvas1.BackColor = System.Drawing.Color.White;
-            this.canvas1.Location = new System.Drawing.Point(0, 27);
+            this.canvas1.Location = new System.Drawing.Point(0, 33);
+            this.canvas1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.canvas1.Name = "canvas1";
-            this.canvas1.Size = new System.Drawing.Size(812, 686);
+            this.canvas1.Size = new System.Drawing.Size(1083, 844);
             this.canvas1.TabIndex = 3;
             this.canvas1.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas1_Paint);
             this.canvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas1_MouseDown);
+            this.canvas1.MouseLeave += new System.EventHandler(this.Canvas1_MouseLeave);
             this.canvas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas1_MouseMove);
             this.canvas1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas1_MouseUp);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 725);
+            this.ClientSize = new System.Drawing.Size(1760, 892);
             this.Controls.Add(this.canvas1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);

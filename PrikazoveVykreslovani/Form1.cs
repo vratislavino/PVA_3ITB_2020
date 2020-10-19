@@ -17,6 +17,8 @@ namespace PrikazoveVykreslovani
         List<Group> drawnGroups = new List<Group>();
         Group selectedGroup = null;
 
+        Operation operation = Operation.None;
+
         public Form1() {
             InitializeComponent();
         }
@@ -60,7 +62,7 @@ namespace PrikazoveVykreslovani
 
             Group g = new Group(obj);
             drawnGroups.Add(g);
-            g.size = new Size(200, 400);
+            g.size = new Size(400, 400);
             g.position = new Point(50, 50);
             //g.position = new Point(canvas1.Width / 2 , canvas1.Height/2);
             canvas1.Refresh();
@@ -71,24 +73,60 @@ namespace PrikazoveVykreslovani
         }
 
         private void canvas1_MouseDown(object sender, MouseEventArgs e) {
-
+            if(selectedGroup != null) {
+                operation = selectedGroup.GetOperation(e.Location);
+            }
         }
 
         private void canvas1_MouseUp(object sender, MouseEventArgs e) {
-
+            operation = Operation.None;
         }
 
         private void canvas1_MouseMove(object sender, MouseEventArgs e) {
-            foreach(Group g in drawnGroups) {
+
+            Group tempSelected = null;
+
+            foreach (Group g in drawnGroups) {
                 if (g.ContainsPoint(e.Location)) {
-                    selectedGroup = g;
-                    g.Selected = true;
-                    // problém s posunem při vykreslování shape
+                    tempSelected = g;
                     break;
                 }
             }
 
+            if(tempSelected == null) {
+                if(selectedGroup != null) {
+                    selectedGroup.Selected = false;
+                }
+            } else {
+                if(selectedGroup != null) {
+                    selectedGroup.Selected = false;
+                }
+                selectedGroup = tempSelected;
+                tempSelected.Selected = true;
+            }
+
+            if(selectedGroup != null && operation != Operation.None) {
+                if(operation == Operation.Replace) {
+                    selectedGroup.GroupReplace(e.Location);
+                } else {
+                    Point p = selectedGroup.position;
+                    Size s = new Size(e.X - p.X, e.Y - p.Y);
+                    selectedGroup.GroupResize(s);
+                }
+
+            }
+
             canvas1.Refresh();
         }
+
+        private void Canvas1_MouseLeave(object sender, EventArgs e) {
+            operation = Operation.None;
+        }
+    }
+    public enum Operation
+    {
+        None,
+        Replace,
+        Resize
     }
 }
